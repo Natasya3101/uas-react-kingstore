@@ -1,9 +1,11 @@
 import express from "express";
 import cors from "cors";
-import pool from "./db.js";
-import argon2 from "argon2";
+// import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import multer from "multer";
+import { addPakaian, deletePakaianById, editPakaianById, getPakaian } from "./public/route/pakaian.js";
+import { login } from "./public/route/login.js";
+
 
 
 const app = express();
@@ -26,14 +28,14 @@ app.use((req,res,next) => {
     }
 })
 
-app.post("/api/v1/register", async (req, res) => {
-    const hash = await argon2.hash(req.body.pass);
-    await pool.query("INSERT INTO admin (username, pass) VALUES (?, ?)", [
-      req.body.username,
-      hash,
-    ]);
-    res.send("Pendaftaran berhasil.");
-})
+// app.post("/api/v1/register", async (req, res) => {
+//     const hash = await argon2.hash(req.body.pass);
+//     await pool.query("INSERT INTO admin (username, pass) VALUES (?, ?)", [
+//       req.body.username,
+//       hash,
+//     ]);
+//     res.send("Pendaftaran berhasil.");
+// })
 
 
 
@@ -60,57 +62,11 @@ app.post("/api/v1/register", async (req, res) => {
   
 app.use(express.static("public"));
 
-app.post("/api/v1/login", async (req, res) => {
-  console.log("Nama Pengguna yang Diterima:", req.body.username); // Menampilkan nama pengguna yang diterima dari permintaan POST
-  const [rows] = await pool.query("SELECT * FROM admin WHERE username = ?", [
-      req.body.username,
-  ]);
-
-  if (rows && rows[0]) {
-      const user = rows[0]; // Mengambil elemen pertama dari array rows
-      const passwordMatch = await argon2.verify(user.pass, req.body.pass);
-
-      if (passwordMatch) {
-          const token = jwt.sign({ id: user.id, username: user.username },SECRET_KEY); // Menggunakan secret key "kim"
-          res.send({
-              token,
-              message: "Login berhasil.",
-          });
-      } else {
-          res.status(401).send("Kata sandi salah.");
-      }
-  } else {
-      res.status(404).send(`Pengguna dengan nama pengguna ${req.body.username} tidak ditemukan.`);
-  }
-});
-
-app.post("/api/v1/addPakaian", upload.single("foto"), async (req, res) => {
-  try {
-      // Check if the nama_pakaian already exists
-      const existingPakaian = await pool.query(
-          'SELECT * FROM pakaian WHERE nama_pakaian = ?',
-          [req.body.nama_pakaian]
-      );
-
-      if (existingPakaian.length > 0) {
-          return res.status(400).send('Nama pakaian sudah ada. Pilih nama yang lain.');
-      }
-
-      // If nama_pakaian doesn't exist, proceed with the insertion
-      await pool.query(
-          'INSERT INTO pakaian VALUES (NULL, ?, ?, ?, ?, ?, ?)',
-          [req.body.kategori, req.body.nama_pakaian, req.body.jenis, req.body.harga, req.body.stok, req.file.filename]
-      );
-     
-      res.send('Pakaian Sudah di Tambahkan');
-  } catch (error) {
-      console.error("Terjadi kesalahan saat menambahkan pakaian:", error);
-      res.status(500).send("Terjadi kesalahan saat menambahkan pakaian.");
-  }
-});
-
-
-
+app.post("/api/v1/login", login);
+app.post("/api/v1/addPakaian", upload.single("foto") , addPakaian); 
+app.get("/api/v1/getPakaian", getPakaian);
+app.delete("/api/v1/deleteById/:kode_pakaian", deletePakaianById);
+app.put("/api/v1/editById/:kode_pakaian", editPakaianById);
 
 
 
