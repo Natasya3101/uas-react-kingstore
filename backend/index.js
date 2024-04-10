@@ -1,24 +1,17 @@
 import express from "express";
 import cors from "cors";
-// import argon2 from "argon2";
-import jwt from "jsonwebtoken";
-import multer from "multer";
-import { addPakaian, deletePakaianById, editPakaianById, getPakaian } from "./public/route/pakaian.js";
-import { login } from "./public/route/login.js";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser"
+import AuthRoutes from "./api/routes/auth-route.js";
+import PakaianRoutes from "./api/routes/pakaian-route.js";
 
-
-
+dotenv.config();
 const app = express();
-const upload = multer({ dest: "public/photos" });
-
 
 app.use(express.json());
+app.use(cookieParser());
 
-app.use(
-    cors({
-        origin : ["http://localhost:5173"],
-    })
-)
+app.use(cors({origin : ["http://localhost:5173"], credentials: true}))
 
 app.use((req,res,next) => {
     if (req.path.startsWith("/api")){
@@ -27,53 +20,11 @@ app.use((req,res,next) => {
         res.send('URL tidak valid (URL harus diawali "/api")')
     }
 })
-
-// app.post("/api/v1/register", async (req, res) => {
-//     const hash = await argon2.hash(req.body.pass);
-//     await pool.query("INSERT INTO admin (username, pass) VALUES (?, ?)", [
-//       req.body.username,
-//       hash,
-//     ]);
-//     res.send("Pendaftaran berhasil.");
-// })
-
-
-
-// Middleware otentikasi
-// app.use((req, res, next) => {
-//   const authorization = req.headers.authorization;
-//   if (authorization) {
-//     if (authorization.startsWith("Bearer ")) {
-//       const token = authorization.split(" ")[1];
-//       try {
-//         req.user = jwt.verify(token, process.env.SECRET_KEY);
-//         next();
-//       } catch (error) {
-//         res.send("Token tidak valid.");
-//       }
-//     } else {
-//       res.send('Otorisasi tidak valid (harus "Bearer").');
-//     }
-//   } else {
-//     res.send("Anda belum login (tidak ada otorisasi).");
-//   }
-// });
-  
   
 app.use(express.static("public"));
+app.use(cookieParser());
 
-app.post("/api/v1/login", login);
-app.post("/api/v1/addPakaian", upload.single("foto") , addPakaian); 
-app.get("/api/v1/getPakaian", getPakaian);
-app.delete("/api/v1/deleteById/:kode_pakaian", deletePakaianById);
-app.put("/api/v1/editById/:kode_pakaian", editPakaianById);
+app.use("/api/v1",AuthRoutes);
+app.use("/api/v1",PakaianRoutes);
 
-
-
-
-  
-  
-  
-  
-  
 app.listen(3000,() => console.log("Server berhasil dijalankan."))
