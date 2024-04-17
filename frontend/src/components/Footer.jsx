@@ -7,7 +7,7 @@ const Footer = () => {
             <Mails size={30} cursor={'pointer'}/>
             <Github size={30} cursor={'pointer'}/>
         </div>
-        <h1 className="font-bold">| &copy; 2023 copyright : Raja Salsabilla Annatasya |</h1>
+        <h1 className="font-bold">| &copy; 2024 copyright : Raja Salsabilla Annatasya |</h1>
     </footer>
   );
 };

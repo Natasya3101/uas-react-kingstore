@@ -192,7 +192,7 @@ export default function Home() {
               type="text"
               className="placeholder:text-center m-auto sm:text-sm rounded-full focus:ring-primary-600 focus:border-primary-600 block sm:w-2/4 w-full p-1 bg-slate-400 border-gray-600 placeholder-black text-black"
               required
-              placeholder="Nama Pakaian"
+              placeholder="Cari Nama Pakaian"
               onChange={handleSearch}
             />
           </form>
