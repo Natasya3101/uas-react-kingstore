@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "c6771ad5-40bf-4fe9-8046-8416629fdf51",
+		"name": "UAS React",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30717439"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"natasya\",\r\n    \"password\": \"acaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiJDJiJDEwJENjbDN3ZDZrT3FralIwYnV0cmdaeE93RlBuenZ2WmIyMEtFQ0ZKTUVsRFhyRVI1L3cwQkVhIiwiaWF0IjoxNzEzMTA5ODMzfQ.VZG1Km9WptUrXGP0Rgb5QicWQy-ZIAnO4FN5LpAIW04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/auth/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add pakaian",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiJDJiJDEwJENjbDN3ZDZrT3FralIwYnV0cmdaeE93RlBuenZ2WmIyMEtFQ0ZKTUVsRFhyRVI1L3cwQkVhIiwiaWF0IjoxNzEzMTA5ODMzfQ.VZG1Km9WptUrXGP0Rgb5QicWQy-ZIAnO4FN5LpAIW04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama_pakaian\": \"Thestory\",\r\n    \"kategori\": 1,\r\n    \"jenis\": \"T-Shirt\",\r\n    \"harga\": \"Rp. 40.000\",\r\n    \"stok\": 10,\r\n    \"foto\": \"https://i.pinimg.com/564x/b4/21/90/b42190272c7d0e6ef4b24c64fee0eb7e.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/pakaian/addPakaian",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pakaian",
+						"addPakaian"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all pakaian",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJuYXRhc3lhIiwiUEFTU1dPUkQiOiIkMmIkMTAkRFB5LnFLaGJLc09nanE0cFVYTHh2dXM1UExwRkZHNVlndDU0NHQ2UWF0ei9yL3l6dXE1S0ciLCJpYXQiOjE3MTMzMjc0NDl9.tXWORw6CzN0HTKYw843UrrZXIbx_ho9CuzY_r6rlyS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pakaian/getPakaian/?nama_pakaian=&sort=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pakaian",
+						"getPakaian",
+						""
+					],
+					"query": [
+						{
+							"key": "nama_pakaian",
+							"value": ""
+						},
+						{
+							"key": "nama",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit pakaian",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJuYXRhc3lhIiwiUEFTU1dPUkQiOiIkMmIkMTAkRFB5LnFLaGJLc09nanE0cFVYTHh2dXM1UExwRkZHNVlndDU0NHQ2UWF0ei9yL3l6dXE1S0ciLCJpYXQiOjE3MTMyMDk2Nzd9.NrWZB6qxw3P_qkUbX_L2iYY5fAFI9yGM0Pvsfjh_SPM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kategori\": \"1\",\r\n    \"nama_pakaian\": \"Happiness 07\",\r\n    \"jenis\": \"Hoodie\",\r\n    \"harga\": \"Rp. 150.000\",\r\n    \"stok\": 10,\r\n    \"foto\": \"https://i.pinimg.com/564x/48/ee/7a/48ee7a8466eb7d1786f10b9c1daa9029.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pakaian/editById/:kode_pakaian",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pakaian",
+						"editById",
+						":kode_pakaian"
+					],
+					"variable": [
+						{
+							"key": "kode_pakaian",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete pakaian",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiJDJiJDEwJENjbDN3ZDZrT3FralIwYnV0cmdaeE93RlBuenZ2WmIyMEtFQ0ZKTUVsRFhyRVI1L3cwQkVhIiwiaWF0IjoxNzEzMTA5ODMzfQ.VZG1Km9WptUrXGP0Rgb5QicWQy-ZIAnO4FN5LpAIW04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/pakaian/deleteById/:kode_pakaian",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pakaian",
+						"deleteById",
+						":kode_pakaian"
+					],
+					"variable": [
+						{
+							"key": "kode_pakaian",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get pakaian by id desc",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJuYXRhc3lhIiwiUEFTU1dPUkQiOiIkMmIkMTAkRFB5LnFLaGJLc09nanE0cFVYTHh2dXM1UExwRkZHNVlndDU0NHQ2UWF0ei9yL3l6dXE1S0ciLCJpYXQiOjE3MTMzMjc2MTh9.F25w4rynE6UKrVTDuuHz1sj-hcTfKXGwUuEAyRIWrDo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pakaian/getPakaian/?nama_pakaian=&sort=Desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pakaian",
+						"getPakaian",
+						""
+					],
+					"query": [
+						{
+							"key": "nama_pakaian",
+							"value": ""
+						},
+						{
+							"key": "sort",
+							"value": "Desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get pakaian by id asc",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJuYXRhc3lhIiwiUEFTU1dPUkQiOiIkMmIkMTAkRFB5LnFLaGJLc09nanE0cFVYTHh2dXM1UExwRkZHNVlndDU0NHQ2UWF0ei9yL3l6dXE1S0ciLCJpYXQiOjE3MTMzMjc2MTh9.F25w4rynE6UKrVTDuuHz1sj-hcTfKXGwUuEAyRIWrDo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pakaian/getPakaian/?nama_pakaian=&sort=Asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pakaian",
+						"getPakaian",
+						""
+					],
+					"query": [
+						{
+							"key": "nama_pakaian",
+							"value": ""
+						},
+						{
+							"key": "sort",
+							"value": "Asc"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
