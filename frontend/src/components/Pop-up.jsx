@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { CircleX } from "lucide-react";
-import Button from "./Button";
-import { motion } from "framer-motion";
 /* eslint-disable react/prop-types */
-export default function Popup({ popUp, children, closePopup, title }) {
+export default function Popup({ children, closePopup, title }) {
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 place-items-center place-content-center backdrop-blur-sm">
+    <div className="w-screen h-screen fixed top-0 z-50 left-0 place-items-center place-content-center backdrop-blur-sm">
       <div className="w-full m-auto rounded-lg shadow border md:mt-8 sm:max-w-md xl:p-0 bg-slate-600 transition-shadow border-gray-700">
         <CircleX
           color="white"
