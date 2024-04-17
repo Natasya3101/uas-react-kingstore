@@ -37,17 +37,4 @@ export const logout = async (_req, res) => {
   res.status(200).json({ msg: "Logout berhasil" });
 };
 
-// export async function register(req, res) {
-//   const { username, password } = req.body;
-//   const salt = await bcrypt.genSalt();
-//   const hash = await bcrypt.hash(password, salt);
-//   try {
-//     await pool.query("INSERT INTO admin (username, password) VALUES (?, ?)", [
-//       username,
-//       hash,
-//     ]);
-//     return res.status(200).json({ msg: "Pendaftaran Berhasil !!!" });
-//   } catch (error) {
-//     res.status(500).json({ error });
-//   }
-// }
+
