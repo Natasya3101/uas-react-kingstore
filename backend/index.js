@@ -22,7 +22,6 @@ app.use((req,res,next) => {
 })
   
 app.use(express.static("public"));
-app.use(cookieParser());
 
 app.use("/api/v1",AuthRoutes);
 app.use("/api/v1",PakaianRoutes);
